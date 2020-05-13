@@ -4,25 +4,29 @@ import Counter from "./counter";
 class CounterContainer extends PureComponent {
   constructor() {
     super();
-    this.state = {
-      counter: 0,
-    };
 
     this.increment = () => {
-      this.setState({ counter: this.state.counter + 1 });
+      this.props.store.dispatch({ type: "INCREMENT" });
     };
 
     this.decrement = () => {
-      this.setState({ counter: this.state.counter - 1 });
+      this.props.store.dispatch({ type: "DECREMENT" });
     };
   }
 
+  componentDidMount() {
+    //forceUpdate will prevent us from using this.setState
+    this.unsubscribe = this.props.store.subscribe(() => this.forceUpdate());
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
+
   render() {
-    //using destructing to create a variable counter from this.state.counter
-    const { counter } = this.state;
     return (
       <Counter
-        counter={counter}
+        counter={this.props.store.getState()}
         increment={this.increment}
         decrement={this.decrement}
       />
