@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 
 export const Counter = ({ counter, increment, decrement }) => (
   <div>
@@ -9,18 +8,4 @@ export const Counter = ({ counter, increment, decrement }) => (
   </div>
 );
 
-const mapStateToProps = (state) => ({
-  counter: state,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  increment: () => {
-    dispatch({ type: "INCREMENT" });
-  },
-
-  decrement: () => {
-    dispatch({ type: "DECREMENT" });
-  },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Counter);
+export default Counter;
