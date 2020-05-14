@@ -4,20 +4,9 @@ import "./index.css";
 import App from "./App";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
+import counterReducer from "./redux-flow/reducers/counters";
 
-//Reducer
-const counter = (state = 0, action) => {
-  switch (action.type) {
-    case "INCREMENT":
-      return state + 1;
-    case "DECREMENT":
-      return state - 1;
-    default:
-      return state;
-  }
-};
-
-const store = createStore(counter);
+const store = createStore(counterReducer);
 
 ReactDOM.render(
   <React.StrictMode>
