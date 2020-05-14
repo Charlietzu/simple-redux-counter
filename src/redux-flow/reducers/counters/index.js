@@ -7,5 +7,13 @@ export default (state, action) => {
       /**we use "_" because we need the first parameter to iterate thru the second (index)
          but we don't use the first one in any moment.*/
       return state.filter((_, index) => index !== action.index);
+    case "INCREMENT":
+      return state.map((counter, index) =>
+        index === action.index ? counter + 1 : counter
+      );
+    case "DECREMENT":
+      return state.map((counter, index) =>
+        index === action.index ? counter - 1 : counter
+      );
   }
 };
